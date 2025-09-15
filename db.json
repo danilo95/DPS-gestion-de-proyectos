@@ -1,0 +1,102 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "role": "administrador",
+      "name": "Administrador"
+    },
+    {
+      "id": 2,
+      "username": "project-manager",
+      "password": "pm123",
+      "role": "usuario",
+      "name": "Project Manager"
+    }
+  ],
+  "projects": [
+    {
+      "id": 101,
+      "name": "Plataforma de Reservas",
+      "startDate": "2025-09-01",
+      "estimatedEndDate": "2025-12-15",
+      "owner": "Juan carlos",
+      "developers": [
+        { "id": "dev-1", "name": "Alice" },
+        { "id": "dev-2", "name": "Bruno" },
+        { "id": "dev-3", "name": "Carla" }
+      ],
+      "tasks": [
+        {
+          "id": "t-1",
+          "title": "Diseño de modelo de datos",
+          "status": "done",
+          "assignees": ["Alice"],
+          "dueDate": "2025-09-10"
+        },
+        {
+          "id": "t-2",
+          "title": "Auth con json-server (demo)",
+          "status": "in_progress",
+          "assignees": ["Bruno"],
+          "dueDate": "2025-09-20"
+        },
+        {
+          "id": "t-3",
+          "title": "Pantalla de proyectos",
+          "status": "to_do",
+          "assignees": ["Carla"],
+          "dueDate": "2025-09-25"
+        }
+      ]
+    },
+    {
+      "id": 102,
+      "name": "App de Reportes",
+      "startDate": "2025-08-15",
+      "estimatedEndDate": "2025-11-30",
+      "owner": "Juan carlos",
+      "developers": [
+        { "id": "dev-4", "name": "Daniel" },
+        { "id": "dev-5", "name": "Eva" }
+      ],
+      "tasks": [
+        {
+          "id": "t-4",
+          "title": "Esquema de permisos",
+          "status": "in_progress",
+          "assignees": ["Daniel"]
+        },
+        {
+          "id": "t-5",
+          "title": "Query optimizations",
+          "status": "to_do",
+          "assignees": ["Eva"]
+        }
+      ]
+    },
+    {
+      "id": 103,
+      "name": "Website Marketing",
+      "startDate": "2025-09-05",
+      "estimatedEndDate": "2025-10-20",
+      "owner": "Juan carlos",
+      "developers": [{ "id": "dev-6", "name": "Fer" }],
+      "tasks": [
+        {
+          "id": "t-6",
+          "title": "Landing hero",
+          "status": "done",
+          "assignees": ["Fer"]
+        },
+        {
+          "id": "t-7",
+          "title": "Formulario de contacto",
+          "status": "to_do",
+          "assignees": ["Fer"]
+        }
+      ]
+    }
+  ]
+}
