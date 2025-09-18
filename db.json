@@ -48,21 +48,27 @@
           "id": "t-1",
           "title": "Diseño de modelo de datos",
           "status": "done",
-          "assignees": ["Alice"],
+          "assignees": [
+            "Alice"
+          ],
           "dueDate": "2025-09-10"
         },
         {
           "id": "t-2",
           "title": "Auth con json-server (demo)",
-          "status": "in_progress",
-          "assignees": ["Bruno"],
+          "status": "done",
+          "assignees": [
+            "Bruno"
+          ],
           "dueDate": "2025-09-20"
         },
         {
           "id": "t-3",
           "title": "Pantalla de proyectos",
-          "status": "to_do",
-          "assignees": ["Carla"],
+          "status": "in_progress",
+          "assignees": [
+            "Carla"
+          ],
           "dueDate": "2025-09-25"
         }
       ]
@@ -88,13 +94,17 @@
           "id": "t-4",
           "title": "Esquema de permisos",
           "status": "in_progress",
-          "assignees": ["Daniel"]
+          "assignees": [
+            "Daniel"
+          ]
         },
         {
           "id": "t-5",
           "title": "Query optimizations",
           "status": "to_do",
-          "assignees": ["Eva"]
+          "assignees": [
+            "Eva"
+          ]
         }
       ]
     },
@@ -115,13 +125,17 @@
           "id": "t-6",
           "title": "Landing hero",
           "status": "done",
-          "assignees": ["Fer"]
+          "assignees": [
+            "Fer"
+          ]
         },
         {
           "id": "t-7",
           "title": "Formulario de contacto",
           "status": "to_do",
-          "assignees": ["Fer"]
+          "assignees": [
+            "Fer"
+          ]
         }
       ]
     },
