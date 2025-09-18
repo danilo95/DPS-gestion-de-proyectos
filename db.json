@@ -20,6 +20,13 @@
       "password": "123456",
       "role": "administrador",
       "name": "test 01"
+    },
+    {
+      "id": "b140",
+      "username": "Eportillo",
+      "password": "123456",
+      "role": "project-manager",
+      "name": "Emerson Omar Portillo"
     }
   ],
   "projects": [
@@ -74,39 +81,17 @@
       ]
     },
     {
-      "id": "102",
       "name": "App de Reportes",
       "startDate": "2025-08-15",
       "estimatedEndDate": "2025-11-30",
-      "owner": "Juan carlos",
+      "owner": null,
       "developers": [
         {
-          "id": "dev-4",
-          "name": "Daniel"
-        },
-        {
-          "id": "dev-5",
-          "name": "Eva"
+          "id": "dev-1",
+          "name": "Project Manager"
         }
       ],
-      "tasks": [
-        {
-          "id": "t-4",
-          "title": "Esquema de permisos",
-          "status": "in_progress",
-          "assignees": [
-            "Daniel"
-          ]
-        },
-        {
-          "id": "t-5",
-          "title": "Query optimizations",
-          "status": "to_do",
-          "assignees": [
-            "Eva"
-          ]
-        }
-      ]
+      "id": "102"
     },
     {
       "id": "103",
@@ -162,6 +147,20 @@
         {
           "id": "dev-2",
           "name": "Project Manager"
+        }
+      ],
+      "tasks": []
+    },
+    {
+      "id": "2f51",
+      "name": "DB",
+      "startDate": "2025-09-18",
+      "estimatedEndDate": "2025-09-20",
+      "owner": null,
+      "developers": [
+        {
+          "id": "dev-1",
+          "name": "test 01"
         }
       ],
       "tasks": []
