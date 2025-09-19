@@ -22,7 +22,7 @@
       "name": "test 01"
     },
     {
-      "id": "b140",
+      "id": "8c2a",
       "username": "Eportillo",
       "password": "123456",
       "role": "project-manager",
@@ -72,7 +72,7 @@
         {
           "id": "t-3",
           "title": "Pantalla de proyectos",
-          "status": "in_progress",
+          "status": "done",
           "assignees": [
             "Carla"
           ],
