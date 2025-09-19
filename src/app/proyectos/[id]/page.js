@@ -134,10 +134,14 @@ export default function ProjectDetailPage() {
   const onDragEnd = useCallback(
     ({ active, over }) => {
       if (!project || !active) return;
-
       const draggedTask = active.data?.current?.task;
       const from = active.data?.current?.from;
       const to = over?.id;
+
+      if (!draggedTask || typeof draggedTask.id !== 'number') {
+        console.warn('Invalid dragged task or task ID:', draggedTask);
+        return;
+      }
 
       if (!to || !['to_do', 'in_progress', 'done'].includes(String(to))) return;
       if (from === to) return;
@@ -215,7 +219,7 @@ export default function ProjectDetailPage() {
                           >
                             <Stack spacing={0.5}>
                               <Typography fontWeight={600}>
-                                {t.title}
+                                {t.name}
                               </Typography>
                               <Stack
                                 direction='row'
