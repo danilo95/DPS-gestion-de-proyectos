@@ -27,6 +27,27 @@
       "password": "123456",
       "role": "project-manager",
       "name": "Emerson Omar Portillo"
+    },
+    {
+      "id": "3521",
+      "username": "Carlos_hdz",
+      "password": "Carlos123",
+      "role": "developer",
+      "name": "Carlos Hernández"
+    },
+    {
+      "id": "e731",
+      "username": "Katya_hdz",
+      "password": "Katya!3258",
+      "role": "project-manager",
+      "name": "Katya Hernández"
+    },
+    {
+      "id": "3201",
+      "username": "Ferrer_FC",
+      "password": "Ferrerfc123",
+      "role": "developer",
+      "name": "David Ferrer Coto"
     }
   ],
   "projects": [
@@ -117,12 +138,13 @@
         {
           "id": "t-7",
           "title": "Formulario de contacto",
-          "status": "to_do",
+          "status": "in_progress",
           "assignees": [
             "Fer"
           ]
         }
-      ]
+      ],
+      "progress": 50
     },
     {
       "id": "0a1a",
@@ -164,6 +186,80 @@
         }
       ],
       "tasks": []
+    },
+    {
+      "id": "7627",
+      "name": "Plataforma web para gestión de eventos",
+      "startDate": "2025-09-12",
+      "estimatedEndDate": "2025-10-12",
+      "owner": 2,
+      "developers": [
+        {
+          "id": "dev-1",
+          "name": "test 01"
+        },
+        {
+          "id": "dev-2",
+          "name": "Emerson Omar Portillo"
+        }
+      ],
+      "tasks": [
+        {
+          "id": 1758251916971,
+          "name": "diseño y doc",
+          "status": "to_do"
+        },
+        {
+          "id": 1758251961788,
+          "name": "frontend",
+          "status": "in_progress"
+        },
+        {
+          "id": 1758251967553,
+          "name": "backend",
+          "status": "in_progress"
+        },
+        {
+          "id": 1758251973290,
+          "name": "base de datos",
+          "status": "to_do"
+        },
+        {
+          "id": 1758251979467,
+          "name": "pruebas",
+          "status": "to_do"
+        }
+      ],
+      "progress": 0
+    },
+    {
+      "id": "ac95",
+      "name": "PaginaWeb1",
+      "startDate": "2026-01-02",
+      "estimatedEndDate": "2026-01-30",
+      "owner": null,
+      "developers": [
+        {
+          "id": "3521",
+          "name": "Carlos Hernández"
+        },
+        {
+          "id": "3201",
+          "name": "David Ferrer Coto"
+        }
+      ],
+      "tasks": [
+        {
+          "id": 1758253338022,
+          "name": "diseño y doc",
+          "status": "in_progress"
+        },
+        {
+          "id": 1758253404402,
+          "name": "db",
+          "status": "to_do"
+        }
+      ]
     }
   ]
 }
