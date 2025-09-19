@@ -21,7 +21,7 @@ export default function CrearUsuarioPage() {
 
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
-    const [role, setRole] = useState('project-manager'); // default
+    const [role, setRole] = useState('developer'); // default changed to developer
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [saving, setSaving] = useState(false);
@@ -111,6 +111,7 @@ export default function CrearUsuarioPage() {
                     >
                         <MenuItem value='administrador'>admin</MenuItem>
                         <MenuItem value='project-manager'>project-manager</MenuItem>
+                        <MenuItem value='developer'>developer</MenuItem>
                     </TextField>
                     <TextField
                         label='Contraseña'

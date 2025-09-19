@@ -61,7 +61,7 @@ export default function EditarProyectoPage() {
 
     // cargar proyecto
     useEffect(() => {
-        if (!id) return;
+        if (!id || users.length === 0) return;
         api.get(`/projects/${id}`).then((res) => {
             const p = res.data;
             if (!p) return;
@@ -69,26 +69,38 @@ export default function EditarProyectoPage() {
             setStartDate(p.startDate);
             setEstimatedEndDate(p.estimatedEndDate);
             setOwner(p.owner);
-            setDevelopers(p.developers?.map((d) => d.name) || []);
+            // Mapear los nombres de desarrolladores del proyecto a los objetos de usuario completos
+            const devs = users.filter((u) => p.developers?.some((d) => d.id === u.id));
+            setDevelopers(devs || []);
         });
-    }, [id]);
+    }, [id, users]);
+
+    const projectManagers = useMemo(
+        () => users.filter((u) => u.role === 'project-manager'),
+        [users]
+    );
+
+    const developersList = useMemo(
+        () => users.filter((u) => u.role === 'developer'),
+        [users]
+    );
 
     const ownersOptions = useMemo(
         () =>
-            users.map((u) => ({
+            projectManagers.map((u) => ({
                 id: u.id,
-                label: `${u.name || u.username} (${u.role})`,
+                label: `${u.name || u.username}`,
             })),
-        [users]
+        [projectManagers]
     );
 
     const devOptions = useMemo(
         () =>
-            users.map((u) => ({
+            developersList.map((u) => ({
                 id: u.id,
                 name: u.name || u.username,
             })),
-        [users]
+        [developersList]
     );
 
     const isAdmin = useMemo(() => me?.role === 'administrador', [me]);
@@ -116,14 +128,15 @@ export default function EditarProyectoPage() {
             const msg = validate();
             if (msg) {
                 setError(msg);
+                setSaving(false);
                 return;
             }
-            const devs = developers.map((name, idx) => ({
-                id: `dev-${idx + 1}`,
-                name,
+            const devs = developers.map((dev) => ({
+                id: dev.id,
+                name: dev.name,
             }));
 
-            await api.put(`/projects/${id}`, {
+            await api.patch(`/projects/${id}`, {
                 name: name.trim(),
                 startDate,
                 estimatedEndDate,
@@ -133,6 +146,7 @@ export default function EditarProyectoPage() {
 
             router.replace('/proyectos');
         } catch (err) {
+            console.error('Error al actualizar el proyecto:', err);
             setError('No se pudo actualizar el proyecto.');
         } finally {
             setSaving(false);
@@ -140,14 +154,13 @@ export default function EditarProyectoPage() {
     };
 
     const onDelete = async () => {
-        if (!confirm('¿Seguro que deseas eliminar este proyecto? Esta acción no se puede deshacer.')) {
-            return;
-        }
+        console.log('¿Seguro que deseas eliminar este proyecto? Esta acción no se puede deshacer.');
         setDeleting(true);
         try {
             await api.delete(`/projects/${id}`);
             router.replace('/proyectos');
         } catch (err) {
+            console.error('Error al eliminar el proyecto:', err);
             setError('No se pudo eliminar el proyecto.');
         } finally {
             setDeleting(false);
@@ -210,8 +223,8 @@ export default function EditarProyectoPage() {
                         multiple
                         options={devOptions}
                         getOptionLabel={(o) => o.name}
-                        value={devOptions.filter((o) => developers.includes(o.name))}
-                        onChange={(_, values) => setDevelopers(values.map((v) => v.name))}
+                        value={developers}
+                        onChange={(_, values) => setDevelopers(values)}
                         renderInput={(params) => (
                             <TextField
                                 {...params}
