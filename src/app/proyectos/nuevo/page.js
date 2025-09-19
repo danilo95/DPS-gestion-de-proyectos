@@ -26,7 +26,8 @@ export default function CrearProyectoPage() {
     const [estimatedEndDate, setEstimatedEndDate] = useState('');
     const [owner, setOwner] = useState('');
     const [developers, setDevelopers] = useState([]);
-    const [tasks, setTasks] = useState([{ id: Date.now(), name: '' }]); // New state for tasks
+    // estructura para las tareas
+    const [tasks, setTasks] = useState([{ id: Date.now(), name: '', assignees: [], dueDate: '' }]);
     const [error, setError] = useState('');
     const [saving, setSaving] = useState(false);
 
@@ -102,11 +103,12 @@ export default function CrearProyectoPage() {
     };
 
     const handleAddTask = () => {
-        setTasks([...tasks, { id: Date.now(), name: '' }]);
+        setTasks([...tasks, { id: Date.now(), name: '', assignees: [], dueDate: '' }]);
     };
 
-    const handleTaskChange = (id, event) => {
-        setTasks(tasks.map((task) => (task.id === id ? { ...task, name: event.target.value } : task)));
+    // Función para manejar cambios en cualquier campo de una tarea
+    const handleTaskChange = (id, field, value) => {
+        setTasks(tasks.map((task) => (task.id === id ? { ...task, [field]: value } : task)));
     };
 
     const onSubmit = async (e) => {
@@ -128,13 +130,19 @@ export default function CrearProyectoPage() {
             // Filter out empty tasks and add status
             const tasksToSave = tasks
                 .filter((task) => task.name.trim() !== '')
-                .map((task) => ({ ...task, status: 'to_do' }));
+                .map((task) => ({
+                    id: task.id,
+                    title: task.name,
+                    status: 'to_do',
+                    assignees: task.assignees.map(dev => dev.name),
+                    dueDate: task.dueDate
+                }));
 
             await api.post('/projects', {
                 name: name.trim(),
                 startDate,
                 estimatedEndDate,
-                owner: Number(owner),
+                owner: selectedOwner.id, // Se usa el ID del owner
                 developers: devs,
                 tasks: tasksToSave,
             });
@@ -221,13 +229,38 @@ export default function CrearProyectoPage() {
                         Tareas del proyecto
                     </Typography>
                     {tasks.map((task, index) => (
-                        <TextField
-                            key={task.id}
-                            label={`Tarea ${index + 1}`}
-                            value={task.name}
-                            onChange={(e) => handleTaskChange(task.id, e)}
-                            sx={{ mb: 1 }}
-                        />
+                        <Box key={task.id} sx={{ mb: 2, border: '1px solid #ddd', p: 2, borderRadius: 1 }}>
+                            <Typography variant='subtitle2' mb={1}>Tarea {index + 1}</Typography>
+                            <Stack spacing={2}>
+                                <TextField
+                                    label='Nombre de la tarea'
+                                    value={task.name}
+                                    onChange={(e) => handleTaskChange(task.id, 'name', e.target.value)}
+                                    required
+                                />
+                                <Autocomplete
+                                    multiple
+                                    options={devOptions}
+                                    getOptionLabel={(o) => o.name}
+                                    value={task.assignees}
+                                    onChange={(_, values) => handleTaskChange(task.id, 'assignees', values)}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label='Asignado a'
+                                            placeholder='Asignar developers'
+                                        />
+                                    )}
+                                />
+                                <TextField
+                                    label='Fecha de vencimiento'
+                                    type='date'
+                                    InputLabelProps={{ shrink: true }}
+                                    value={task.dueDate}
+                                    onChange={(e) => handleTaskChange(task.id, 'dueDate', e.target.value)}
+                                />
+                            </Stack>
+                        </Box>
                     ))}
                     <Button onClick={handleAddTask} variant='outlined'>
                         Agregar otra tarea

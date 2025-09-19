@@ -12,6 +12,7 @@ import {
   Stack,
   Typography,
   Grid,
+  LinearProgress,
 } from '@mui/material';
 
 import {
@@ -34,6 +35,13 @@ const STATUS_COLOR = {
   in_progress: 'warning',
   done: 'success',
 };
+
+// Función para calcular el progreso del proyecto
+function calcProgress(tasks = []) {
+  const total = tasks.length || 1;
+  const done = tasks.filter((t) => t.status === 'done').length;
+  return Math.round((done / total) * 100);
+}
 
 function DraggableTask({ task, children }) {
   const disabled = task.status === 'done';
@@ -89,17 +97,21 @@ export default function ProjectDetailPage() {
   const [project, setProject] = useState(undefined);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    if (!id) return;
-    (async () => {
-      try {
-        const byId = await api.get(`/projects/${id}`);
-        setProject(byId.data ?? null);
-      } catch {
-        setProject(null);
-      }
-    })();
+  // Función para obtener los datos del proyecto
+  const fetchProject = useCallback(async () => {
+    try {
+      const byId = await api.get(`/projects/${id}`);
+      setProject(byId.data ?? null);
+    } catch {
+      setProject(null);
+    }
   }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      fetchProject();
+    }
+  }, [id, fetchProject]);
 
   const tasksByStatus = useMemo(() => {
     const g = { to_do: [], in_progress: [], done: [] };
@@ -122,13 +134,17 @@ export default function ProjectDetailPage() {
       try {
         setSaving(true);
         await api.patch(`/projects/${id}`, { tasks: nextTasks });
+
+        // Vuelve a obtener los datos del proyecto para asegurar la consistencia y recalcular el progreso.
+        fetchProject();
+        
       } catch (e) {
         setProject((p) => (p ? { ...p, tasks: prevTasks } : p));
       } finally {
         setSaving(false);
       }
     },
-    [id]
+    [id, fetchProject]
   );
 
   const onDragEnd = useCallback(
@@ -176,6 +192,19 @@ export default function ProjectDetailPage() {
           Encargado: {project.owner} • Equipo:{' '}
           {project.developers?.map((d) => d.name).join(', ')}
         </Typography>
+
+        {/* barra de progreso */}
+        <Box mt={2}>
+          <Typography variant='caption' color='text.secondary'>
+            Avance: {calcProgress(project.tasks)}%
+          </Typography>
+          <LinearProgress 
+            variant='determinate' 
+            value={calcProgress(project.tasks)} 
+            sx={{ height: 8, borderRadius: 5 }}
+          />
+        </Box>
+
         {saving && (
           <Typography variant='caption' color='text.secondary'>
             Guardando cambios…
@@ -190,7 +219,7 @@ export default function ProjectDetailPage() {
       >
         <Grid container spacing={2}>
           {['to_do', 'in_progress', 'done'].map((statusKey) => (
-            <Grid key={statusKey} xs={12} md={4}>
+            <Grid key={statusKey} item xs={12} md={4}>
               <DroppableColumn statusKey={statusKey}>
                 <Card elevation={1}>
                   <CardContent>

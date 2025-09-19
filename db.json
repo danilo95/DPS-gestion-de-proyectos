@@ -212,7 +212,7 @@
         {
           "id": 1758251961788,
           "name": "frontend",
-          "status": "in_progress"
+          "status": "done"
         },
         {
           "id": 1758251967553,
@@ -233,31 +233,35 @@
       "progress": 0
     },
     {
-      "id": "ac95",
-      "name": "PaginaWeb1",
-      "startDate": "2026-01-02",
-      "estimatedEndDate": "2026-01-30",
-      "owner": null,
+      "id": "8915",
+      "name": "website04",
+      "startDate": "2025-09-12",
+      "estimatedEndDate": "2025-12-12",
+      "owner": "e731",
       "developers": [
         {
           "id": "3521",
           "name": "Carlos Hernández"
-        },
-        {
-          "id": "3201",
-          "name": "David Ferrer Coto"
         }
       ],
       "tasks": [
         {
-          "id": 1758253338022,
-          "name": "diseño y doc",
-          "status": "in_progress"
+          "id": 1758323250579,
+          "title": "interfaz de usuario",
+          "status": "done",
+          "assignees": [
+            "Carlos Hernández"
+          ],
+          "dueDate": "2025-10-12"
         },
         {
-          "id": 1758253404402,
-          "name": "db",
-          "status": "to_do"
+          "id": 1758323304627,
+          "title": "interfaz de admin",
+          "status": "to_do",
+          "assignees": [
+            "David Ferrer Coto"
+          ],
+          "dueDate": "2025-11-12"
         }
       ]
     }
