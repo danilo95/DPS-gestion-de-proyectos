@@ -48,6 +48,13 @@
       "password": "Ferrerfc123",
       "role": "developer",
       "name": "David Ferrer Coto"
+    },
+    {
+      "id": "8c72",
+      "username": "JHernandez",
+      "password": "123456",
+      "role": "developer",
+      "name": "Juan Hernandez"
     }
   ],
   "projects": [
@@ -56,19 +63,15 @@
       "name": "Plataforma de Reservas",
       "startDate": "2025-09-01",
       "estimatedEndDate": "2025-12-15",
-      "owner": "Juan carlos",
+      "owner": "e731",
       "developers": [
         {
-          "id": "dev-1",
-          "name": "Alice"
+          "id": "3521",
+          "name": "Carlos Hernández"
         },
         {
-          "id": "dev-2",
-          "name": "Bruno"
-        },
-        {
-          "id": "dev-3",
-          "name": "Carla"
+          "id": "3201",
+          "name": "David Ferrer Coto"
         }
       ],
       "tasks": [
@@ -105,10 +108,10 @@
       "name": "App de Reportes",
       "startDate": "2025-08-15",
       "estimatedEndDate": "2025-11-30",
-      "owner": null,
+      "owner": "8c2a",
       "developers": [
         {
-          "id": "dev-1",
+          "id": "2",
           "name": "Project Manager"
         }
       ],
@@ -119,11 +122,11 @@
       "name": "Website Marketing",
       "startDate": "2025-09-05",
       "estimatedEndDate": "2025-10-20",
-      "owner": "Juan carlos",
+      "owner": "8c2a",
       "developers": [
         {
-          "id": "dev-6",
-          "name": "Fer"
+          "id": "3201",
+          "name": "David Ferrer Coto"
         }
       ],
       "tasks": [
@@ -151,8 +154,13 @@
       "name": "test01",
       "startDate": "2025-09-16",
       "estimatedEndDate": "2025-10-02",
-      "owner": null,
-      "developers": [],
+      "owner": "8c2a",
+      "developers": [
+        {
+          "id": "3201",
+          "name": "David Ferrer Coto"
+        }
+      ],
       "tasks": []
     },
     {
@@ -160,15 +168,15 @@
       "name": "test012",
       "startDate": "2025-07-16",
       "estimatedEndDate": "2025-10-03",
-      "owner": 1,
+      "owner": "e731",
       "developers": [
         {
-          "id": "dev-1",
-          "name": "test 01"
+          "id": "3521",
+          "name": "Carlos Hernández"
         },
         {
-          "id": "dev-2",
-          "name": "Project Manager"
+          "id": "3201",
+          "name": "David Ferrer Coto"
         }
       ],
       "tasks": []
@@ -178,11 +186,19 @@
       "name": "DB",
       "startDate": "2025-09-18",
       "estimatedEndDate": "2025-09-20",
-      "owner": null,
+      "owner": "8c2a",
       "developers": [
         {
-          "id": "dev-1",
-          "name": "test 01"
+          "id": "3521",
+          "name": "Carlos Hernández"
+        },
+        {
+          "id": "3201",
+          "name": "David Ferrer Coto"
+        },
+        {
+          "id": "8c72",
+          "name": "Juan Hernandez"
         }
       ],
       "tasks": []
@@ -192,15 +208,11 @@
       "name": "Plataforma web para gestión de eventos",
       "startDate": "2025-09-12",
       "estimatedEndDate": "2025-10-12",
-      "owner": 2,
+      "owner": "e731",
       "developers": [
         {
-          "id": "dev-1",
-          "name": "test 01"
-        },
-        {
-          "id": "dev-2",
-          "name": "Emerson Omar Portillo"
+          "id": "3521",
+          "name": "Carlos Hernández"
         }
       ],
       "tasks": [

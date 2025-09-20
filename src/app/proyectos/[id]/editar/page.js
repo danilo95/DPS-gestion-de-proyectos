@@ -65,12 +65,33 @@ export default function EditarProyectoPage() {
         api.get(`/projects/${id}`).then((res) => {
             const p = res.data;
             if (!p) return;
+
             setName(p.name);
             setStartDate(p.startDate);
             setEstimatedEndDate(p.estimatedEndDate);
-            setOwner(p.owner);
-            // Mapear los nombres de desarrolladores del proyecto a los objetos de usuario completos
-            const devs = users.filter((u) => p.developers?.some((d) => d.id === u.id));
+
+
+            if (p.owner) {
+                const found = users.find(
+                    (u) =>
+                        String(u.id) === String(p.owner) ||
+                        u.name === p.owner ||
+                        u.username === p.owner
+                );
+                setOwner(found ? found.id : '');
+            } else {
+                setOwner('');
+            }
+
+            
+            const devs = users.filter((u) =>
+                p.developers?.some(
+                    (d) =>
+                        String(d.id) === String(u.id) ||
+                        d.name === u.name ||
+                        d.name === u.username
+                )
+            );
             setDevelopers(devs || []);
         });
     }, [id, users]);
@@ -140,7 +161,7 @@ export default function EditarProyectoPage() {
                 name: name.trim(),
                 startDate,
                 estimatedEndDate,
-                owner: Number(owner),
+                owner: String(owner),
                 developers: devs,
             });
 
@@ -189,7 +210,7 @@ export default function EditarProyectoPage() {
                             label='Fecha inicial'
                             type='date'
                             InputLabelProps={{ shrink: true }}
-                            value={startDate}
+                            value={startDate || ''}
                             onChange={(e) => setStartDate(e.target.value)}
                             required
                             sx={{ flex: 1 }}
@@ -198,7 +219,7 @@ export default function EditarProyectoPage() {
                             label='Fecha final estimada'
                             type='date'
                             InputLabelProps={{ shrink: true }}
-                            value={estimatedEndDate}
+                            value={estimatedEndDate || ''}
                             onChange={(e) => setEstimatedEndDate(e.target.value)}
                             required
                             sx={{ flex: 1 }}
@@ -208,7 +229,7 @@ export default function EditarProyectoPage() {
                     <TextField
                         select
                         label='Encargado (owner)'
-                        value={owner}
+                        value={owner || ''}
                         onChange={(e) => setOwner(e.target.value)}
                         required
                     >
