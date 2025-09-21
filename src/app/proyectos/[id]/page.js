@@ -25,6 +25,9 @@ import {
   closestCorners,
 } from '@dnd-kit/core';
 
+import { useRouter } from 'next/navigation';
+import { Button } from '@mui/material';
+
 const STATUS_LABEL = {
   to_do: 'To do',
   in_progress: 'In progress',
@@ -93,6 +96,7 @@ function DroppableColumn({ statusKey, children }) {
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
+  const router = useRouter();
 
   const [project, setProject] = useState(undefined);
   const [saving, setSaving] = useState(false);
@@ -181,6 +185,11 @@ export default function ProjectDetailPage() {
 
   return (
     <Stack spacing={3}>
+      <Button
+      variant='outlined'
+      onClick={()=>router.back()}
+      sx={{alignSelf:'flex-start'}}
+      >Regresar</Button>
       <Box>
         <Typography variant='h4' fontWeight={700}>
           {project.name}

@@ -1,8 +1,12 @@
+
 import './globals.css';
 import { Inter } from 'next/font/google';
+
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import EmotionRegistry from './EmotionRegistry';
 import theme from './theme';
+
+//import Providers from './providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
