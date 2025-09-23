@@ -19,7 +19,7 @@
       "username": "test01",
       "password": "123456",
       "role": "administrador",
-      "name": "test 01"
+      "name": "test 01 updated"
     },
     {
       "id": "8c2a",
@@ -274,6 +274,43 @@
             "David Ferrer Coto"
           ],
           "dueDate": "2025-11-12"
+        }
+      ]
+    },
+    {
+      "id": "c10d",
+      "name": "test01",
+      "startDate": "2025-05-22",
+      "estimatedEndDate": "2026-01-06",
+      "owner": "e731",
+      "developers": [
+        {
+          "id": "3201",
+          "name": "David Ferrer Coto"
+        },
+        {
+          "id": "8c72",
+          "name": "Juan Hernandez"
+        }
+      ],
+      "tasks": [
+        {
+          "id": 1758593736875,
+          "title": "crear database",
+          "status": "to_do",
+          "assignees": [
+            "David Ferrer Coto"
+          ],
+          "dueDate": "2025-10-02"
+        },
+        {
+          "id": 1758593761641,
+          "title": "implementar database",
+          "status": "to_do",
+          "assignees": [
+            "Carlos Hernández"
+          ],
+          "dueDate": "2025-10-01"
         }
       ]
     }

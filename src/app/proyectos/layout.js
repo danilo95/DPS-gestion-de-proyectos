@@ -62,6 +62,13 @@ export default function ProyectosLayout({ children }) {
     }
   };
 
+  const goUser = () => {
+    closeMenu();
+    if (pathname !== '/proyectos/usuarios') {
+      router.push('/proyectos/usuarios');
+    }
+  };
+
   const goCreateProject = () => {
     closeMenu();
     if (pathname !== '/proyectos/nuevo') {
@@ -93,6 +100,14 @@ export default function ProyectosLayout({ children }) {
                 disabled={pathname === '/proyectos/usuarios/nuevo'}
               >
                 Crear usuario
+              </Button>
+              <Button
+                color='inherit'
+                startIcon={<PersonAddAlt1Icon />}
+                onClick={goUser}
+                disabled={pathname === '/proyectos/usuarios'}
+              >
+                Listar Usuarios
               </Button>
 
               <Button
